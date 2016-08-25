@@ -34,12 +34,12 @@ class TransactionController extends Controller {
   }
 
   def retrieve(id: Long)= Action { req =>
-    data.get(id).fold(Ok(Json.obj("status" -> "not ok")))( data => Ok(Json.toJson(data)))
+    data.get(id).fold(Ok(Json.obj("message" -> "no data to retrieve")))( data => Ok(Json.toJson(data)))
   }
 
   def sum(id: Long) = Action {
 
-    data.get(id).fold(Ok(Json.obj("status" -> "not ok")))( d => {
+    data.get(id).fold(Ok(Json.obj("message" -> "no data to sum")))( d => {
       Ok(Json.obj("sum" -> d.parentId.fold(d.amount)( pDataId => data(pDataId).amount + d.amount)))
     })
 
