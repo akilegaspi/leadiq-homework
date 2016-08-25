@@ -22,17 +22,18 @@ class TransactionTest extends Specification {
       val list = List("cars", "animals", "people")
 
       def getType = list( new Random().nextInt(list.length - 1))
-
+      def setParent(num: Long) = if (new Random().nextBoolean) s""", "parent_id": $num """
       def dataGen(num: Long) = {
         val rand = new Random().nextFloat * 1000
           s"""{
               |"amount" : $rand,
-              |"types"  : "$getType" ${if (new Random().nextBoolean) s", \"parent_id\": $num "}
+              |"types"  : "$getType"
+              |${setParent(num)}
               |}""".stripMargin
 
       }
       (1 to 100).map( num => route(FakeRequest(PUT, s"$baseuri/transact/$num", header, dataGen(num))))
-      
+
     }
 
   }
