@@ -5,6 +5,11 @@
 # Home page
 GET     /                           controllers.Application.index
 
+PUT     /transactionservice/transaction/:id     controllers.TransactionController.insert(id: Long)
+GET     /transactionservice/transaction/:id     controllers.TransactionController.retrieve(id: Long)
+GET     /transactionservice/sum/:id             controllers.TransactionController.sum(id: Long)
+GET     /transactionservice/types/:t            controllers.TransactionController.types(t: String)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
