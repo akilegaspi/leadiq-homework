@@ -2,9 +2,7 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-GET     /                           controllers.Application.index
-
+# Transaction Service
 PUT     /transactionservice/transaction/:id     controllers.TransactionController.insert(id: Long)
 GET     /transactionservice/transaction/:id     controllers.TransactionController.retrieve(id: Long)
 GET     /transactionservice/sum/:id             controllers.TransactionController.sum(id: Long)
