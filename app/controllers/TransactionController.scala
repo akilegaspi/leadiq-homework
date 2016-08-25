@@ -46,7 +46,7 @@ class TransactionController extends Controller {
   }
 
   def types(t: String) = Action {
-    Ok(Json.arr(data.values.toList.find( data => data.dataType == t)))
+    Ok(Json.arr(data.values.toList.filter( _.dataType == t)))
   }
 
 }
